@@ -1,0 +1,26 @@
+@startuml
+actor "Система" as sys
+actor "Пользователь" as user
+
+left to right direction
+
+rectangle "Разработка пользовательского приложения для программного подбора"{
+UC_user_send_request as (ВВодит название товара)
+System_get_request as (Включается парсер, GOOGLE,YA,ALIBABA, ETC)
+System_output as (Система возвращает названия компании и ссылки без дублей)
+System_later_develop as (В дальнейшем со сбором данных в базу возможностью с авторассылки)
+
+
+}
+
+
+
+
+user --> UC_user_send_request
+sys <.. UC_user_send_request
+sys --> System_get_request
+System_get_request --> System_output
+System_output --> System_later_develop 
+
+@enduml
+

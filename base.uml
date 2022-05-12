@@ -1,0 +1,53 @@
+@startuml
+left to right direction
+!include <tupadr3/common>
+!include <tupadr3/font-awesome/server>
+!include <tupadr3/font-awesome/database>
+
+
+
+package Application <<$app{scale=2}>> {
+}
+
+database Database <<$app>> {
+
+
+package phonebookParameters <<$db{scale=2}>> {
+rectangle table as "New Requare"{
+FA_DATABASE(db1,,database,white) #RoyalBlue
+
+rectangle bd as "Title"
+rectangle site_link as "Site"
+rectangle emails as "email"
+rectangle date as "date"
+rectangle region as "RG"
+rectangle id as "id"
+}
+}
+
+package phonebookConstraints <<$db{scale=2}>> {
+
+FA_DATABASE(db2,_,database) #Red
+note right of id : Уникальное поле
+note right of region : VARCHAR(2) - EU,RU, etc....
+note right of date : 01.01.1900 - 01.01.2022
+note right of site_link : A-Z
+note right of emails : A - Z
+note right of bd: A - Z
+rectangle base_phones as "<U+0020>Title\n--\nSite\n--\n--\nemail\n--\ndate"
+
+
+}
+id --> base_phones 
+
+table --> phonebookConstraints : <<New table>>
+
+
+
+
+
+
+Application --> Database : <<call>>
+@enduml
+
+/*https://www.plantuml.com/plantuml/uml/SyfFKj2rKt3CoKnELR1Io4ZDoSa70000*/
