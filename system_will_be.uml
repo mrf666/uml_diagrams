@@ -1,0 +1,45 @@
+@startuml
+actor "Администратор" as adm
+actor "Система" as sys
+actor "Пользователь" as user
+database "BASE" as base
+collections "заказ" as req
+
+left to right direction
+
+rectangle "Разработка приложения для центролизации и улучшения коммуникации команды"{
+UC_adm_add_req as (Добавляет заказ)
+UC_user_contacts as (Добавляет/удаляет/изменяет конакты/цены/факт взаимодействия с клиентом/...)
+UC_user_send_request as (ВВодит название товара)
+UC_user_id as (Имеет собственный идентификатор)
+System_get_request as (Отдаёт данные пользователю)
+System_control as (Контролирует права пользователей)
+System_with_base as (Взаимодействует с базой данных)
+System_compaire as (Система сравнивает прайс выводя лучшее предложение)
+RQ_have_id as (Выдаёт заказу идентификатор)
+UC_adm_distribute as (Распределяет заказы)
+UC_user_fund as (Может передать заказ другому пользователю)
+
+
+
+}
+
+user --> UC_user_contacts
+user --> UC_user_id
+req --> adm
+adm --> UC_adm_add_req
+adm --> UC_adm_distribute
+adm --> UC_user_fund
+user --> UC_user_send_request
+sys <.. UC_user_send_request
+sys --> System_get_request
+sys --> System_control
+sys --> RQ_have_id
+sys --> System_with_base
+sys --> System_compaire
+System_with_base ..> base
+UC_user_contacts ..> base
+ 
+
+@enduml
+
